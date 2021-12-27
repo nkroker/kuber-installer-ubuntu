@@ -13,3 +13,6 @@ sudo apt install curl
 ```bash
   sudo curl "https://raw.githubusercontent.com/nkroker/kuber-installer-ubuntu-20.04/master/installer.sh" | bash
 ```
+
+## PSA
+> Please run at your own risk
