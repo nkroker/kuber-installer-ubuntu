@@ -11,7 +11,7 @@ sudo apt install curl
  > Just run this single command
 
 ```bash
-  sudo curl "https://raw.githubusercontent.com/nkroker/kuber-installer-ubuntu-20.04/master/installer.sh" | bash
+sudo curl "https://raw.githubusercontent.com/nkroker/kuber-installer-ubuntu-20.04/master/installer.sh" | bash
 ```
 
 ## PSA
