@@ -15,7 +15,7 @@ cat << "EOF"
 EOF
 
 printf "\n\n\n\n\n\n"
-printf "%40s\n" "${green}Updating system${normal}"
+printf "%0s\n" "${green}Updating system${normal}"
 printf "\n\n"
 # Updating system
 sudo apt update
@@ -23,7 +23,7 @@ sudo apt -y upgrade && sudo sysctl --system
 
 
 printf "\n\n\n\n"
-printf "%40s\n" "${green}Adding required packages and importing Kubernetes GPG keys${normal}"
+printf "%0s\n" "${green}Adding required packages and importing Kubernetes GPG keys${normal}"
 printf "\n\n"
 # Adding required packages and importing Kubernetes GPG keys
 sudo apt -y install curl apt-transport-https
@@ -32,7 +32,7 @@ echo "deb https://apt.kubernetes.io/ kubernetes-xenial main" | sudo tee /etc/apt
 
 
 printf "\n\n\n\n"
-printf "%40s\n" "${green}Installing additional packages with kubernetes- kubeadm, kubelet, kubectl${normal}"
+printf "%0s\n" "${green}Installing additional packages with kubernetes- kubeadm, kubelet, kubectl${normal}"
 printf "\n\n"
 # Installing additional packages with kubernetes- kubeadm, kubelet, kubectl
 sudo apt update
@@ -40,14 +40,14 @@ sudo apt -y install vim git curl wget kubelet kubeadm kubectl
 sudo apt-mark hold kubelet kubeadm kubectl
 
 printf "\n\n\n\n"
-printf "%40s\n" "${green}Versions${normal}"
+printf "%0s\n" "${green}Versions${normal}"
 printf "\n\n"
 # Printing versions
 echo $(kubectl version --client && kubeadm version)
 
 
 printf "\n\n\n\n"
-printf "%40s\n" "${green}Disabling Swap${normal}"
+printf "%0s\n" "${green}Disabling Swap${normal}"
 printf "\n\n"
 # Disabling Swap
 sudo sed -i '/ swap / s/^\(.*\)$/#\1/g' /etc/fstab
@@ -55,7 +55,7 @@ sudo swapoff -a
 
 
 printf "\n\n\n\n"
-printf "%40s\n" "${green}Enable kernel modules${normal}"
+printf "%0s\n" "${green}Enable kernel modules${normal}"
 printf "\n\n"
 # Enable kernel modules
 sudo modprobe overlay
@@ -63,7 +63,7 @@ sudo modprobe br_netfilter
 
 
 printf "\n\n\n\n"
-printf "%40s\n" "${green}Add some settings to sysctl${normal}"
+printf "%0s\n" "${green}Add some settings to sysctl${normal}"
 printf "\n\n"
 # Add some settings to sysctl
 sudo tee /etc/sysctl.d/kubernetes.conf<<EOF
@@ -74,7 +74,7 @@ EOF
 
 
 printf "\n\n\n\n"
-printf "%40s\n" "${green}Reload sysctl${normal}"
+printf "%0s\n" "${green}Reload sysctl${normal}"
 printf "\n\n"
 # Reload sysctl
 sudo sysctl --system
@@ -82,12 +82,12 @@ sudo sysctl --system
 
 
 printf "\n\n\n\n"
-printf "%40s\n" "${green}---------------------------------INSTALLING-----CONTAINER------RUNTIME------------------------------${normal}"
+printf "%0s\n" "${green}---------------------------------INSTALLING-----CONTAINER------RUNTIME------------------------------${normal}"
 printf "\n\n"
 # ---------------------------------INSTALLING-----CONTAINER------RUNTIME------------------------------
 
 printf "\n\n\n\n"
-printf "%40s\n" "${green}Add repo and installing packages${normal}"
+printf "%0s\n" "${green}Add repo and installing packages${normal}"
 printf "\n\n"
 # Add repo and Install packages
 sudo apt update
@@ -99,14 +99,14 @@ sudo apt install -y containerd.io docker-ce docker-ce-cli
 
 
 printf "\n\n\n\n"
-printf "%40s\n" "${green}Create required directories${normal}"
+printf "%0s\n" "${green}Create required directories${normal}"
 printf "\n\n"
 # Create required directories
 sudo mkdir -p /etc/systemd/system/docker.service.d
 
 
 printf "\n\n\n\n"
-printf "%40s\n" "${green}Create daemon json config file${normal}"
+printf "%0s\n" "${green}Create daemon json config file${normal}"
 printf "\n\n"
 # Create daemon json config file
 sudo tee /etc/docker/daemon.json <<EOF
@@ -122,7 +122,7 @@ EOF
 
 
 printf "\n\n\n\n"
-printf "%40s\n" "${green}Start and enable Services${normal}"
+printf "%0s\n" "${green}Start and enable Services${normal}"
 printf "\n\n"
 # Start and enable Services
 sudo systemctl daemon-reload
@@ -131,7 +131,7 @@ sudo systemctl enable docker
 
 
 printf "\n\n\n\n"
-printf "%40s\n" "${green} Setting up the envirionment${normal}"
+printf "%0s\n" "${green} Setting up the envirionment${normal}"
 printf "\n\n"
 # Setting up the envirionment
 lsmod | grep br_netfilter
