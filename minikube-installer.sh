@@ -80,14 +80,6 @@ if [[ $(vboxmanage --version) ]]; then
 fi
 
 
-# Installing Minikube
-if [[ $(which minikube) ]]; then
-    print_message "Minikube Installed already 🧊"
-  else
-    install_minikube
-fi
-
-
 # Installing Docker
 if [[ $(which docker) && $(docker --version) ]]; then
     print_message "Docker Already Installed 🧃"
@@ -96,6 +88,12 @@ if [[ $(which docker) && $(docker --version) ]]; then
 fi
 
 
+# Installing Minikube
+if [[ $(which minikube) ]]; then
+    print_message "Minikube Installed already 🧊"
+  else
+    install_minikube
+fi
 
 # Showing Banner
 printf "\n\n\n\n\n\n"
