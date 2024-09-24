@@ -36,7 +36,7 @@ printf "%0s\n" "${green}Installing additional packages with kubernetes- kubeadm,
 printf "\n\n"
 # Installing additional packages with kubernetes- kubeadm, kubelet, kubectl
 sudo apt update
-sudo apt -y install vim git curl wget kubelet kubeadm kubectl
+sudo apt -y install nano vim git curl wget kubelet kubeadm kubectl
 sudo apt-mark hold kubelet kubeadm kubectl
 
 printf "\n\n\n\n"
