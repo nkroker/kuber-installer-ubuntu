@@ -26,7 +26,7 @@ printf "\n\n\n\n"
 printf "%0s\n" "${green}Adding required packages and importing Kubernetes GPG keys${normal}"
 printf "\n\n"
 # Adding required packages and importing Kubernetes GPG keys
-sudo apt -y install apt-transport-https ca-certificates curl gpg
+sudo apt -y install apt-transport-https ca-certificates curl gpg socat
 
 # Get the Ubuntu release version number for pre check
 version=$(lsb_release -r | awk '{print $2}')
