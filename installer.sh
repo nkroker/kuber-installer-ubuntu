@@ -26,9 +26,23 @@ printf "\n\n\n\n"
 printf "%0s\n" "${green}Adding required packages and importing Kubernetes GPG keys${normal}"
 printf "\n\n"
 # Adding required packages and importing Kubernetes GPG keys
-sudo apt -y install curl apt-transport-https
-curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add -
-echo "deb https://apt.kubernetes.io/ kubernetes-xenial main" | sudo tee /etc/apt/sources.list.d/kubernetes.list
+sudo apt -y install apt-transport-https ca-certificates curl gpg
+
+# Get the Ubuntu release version number for pre check
+version=$(lsb_release -r | awk '{print $2}')
+
+# Compare the version with 22.04
+if [[ "$(printf '%s\n' "$version" "22.04" | sort -V | head -n1)" == "$version" && "$version" != "22.04" ]]; then
+  # If version is smaller than 22.04, create the directory
+  echo "Version is smaller than 22.04. Creating directory..."
+  mkdir -p /etc/apt/keyrings
+else
+  echo "Version is 22.04 or higher. No action needed."
+fi
+
+# Importing reselase key and also adding apt repository
+curl -fsSL https://pkgs.k8s.io/core:/stable:/v1.31/deb/Release.key | sudo gpg --dearmor -o /etc/apt/keyrings/kubernetes-apt-keyring.gpg
+echo 'deb [signed-by=/etc/apt/keyrings/kubernetes-apt-keyring.gpg] https://pkgs.k8s.io/core:/stable:/v1.31/deb/ /' | sudo tee /etc/apt/sources.list.d/kubernetes.list
 
 
 printf "\n\n\n\n"
