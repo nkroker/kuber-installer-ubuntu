@@ -1,5 +1,5 @@
-# kuber-installer-ubuntu-20.04
-> This repo containes a bash file for installing  and configuring container runtime Docker and Kubernetes on ubuntu 20.04
+# kuber-installer-ubuntu
+> This repo containes a bash file for installing  and configuring container runtime Docker and Kubernetes on ubuntu 20.04 or higher
 
 I created this script because I got bored of installing <br> Kuberntes & Docker repetedly on different servers <br> I want to automate this task so have fun go ahead & enjoy 😎
 
